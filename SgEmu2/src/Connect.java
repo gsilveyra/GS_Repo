@@ -8,6 +8,8 @@ public class Connect extends Thread{
 public static int rxpack;
 public ServerSocket serversocket;
 public Socket server;
+public boolean snd=false;
+public boolean rcv=false;
 
 public void run() {
 		openSocket();
@@ -15,7 +17,6 @@ public void run() {
 			try {
 				Thread.sleep(InitMenu.demora);
 				enviaPaq();
-				
 				recibePaq();
 				
 			} catch (InterruptedException ie) {
@@ -23,7 +24,6 @@ public void run() {
 			}
 	}	
 }
-///
 private void openSocket(){
 	try {
 		serversocket = new ServerSocket(InitMenu.portfin);
@@ -39,6 +39,7 @@ private void enviaPaq(){
 		toClient = new PrintWriter(server.getOutputStream(),true);
 		toClient.write(Packet.ev());  
 		toClient.flush();
+		snd=true;
 		System.out.println(date.dateinf2()+"   TX:  "+Packet.ev());  
 		
 	} catch (IOException e) {
@@ -51,13 +52,14 @@ private void recibePaq(){
 	try {
 		fromClient = new BufferedReader(new InputStreamReader(server.getInputStream()));
 		rxpack = fromClient.read();
+		rcv=true;
 		System.out.println(date.dateinf2()+"   RX:  "+"0"+rxpack);  
 		
 	} catch (IOException e) {
 		e.printStackTrace();
 	}
 }
-///
+
 }
 
 

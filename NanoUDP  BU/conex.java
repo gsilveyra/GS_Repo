@@ -5,7 +5,7 @@ import java.net.InetAddress;
 
 public class conex extends Thread{
 public String zaraza;
-public static String hora;
+public static String sendit;
 //int a;
 @SuppressWarnings("resource")
 public void run(){
@@ -14,7 +14,7 @@ public void run(){
     DatagramSocket serverSocket = new DatagramSocket(3035);
     byte[] receiveData = new byte[150];
     byte[] sendData = new byte[30];
-    System.out.println("Conectado....");  
+    System.out.println("Waiting for ....");  
     while(true)
        {
     	Thread.sleep(500);
@@ -24,6 +24,7 @@ public void run(){
        serverSocket.setReceiveBufferSize(1024);
        String sendit = new String( receivePacket.getData());
        System.out.println(fecha.dateinf2()+ " RX :  "+sendit);               //imprimo recibido
+       System.out.println("IdEquipo:  "+Parseo.parsed(sendit));  
        InetAddress IPAddress = receivePacket.getAddress();
        int port = receivePacket.getPort();
        

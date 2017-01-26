@@ -6,7 +6,7 @@ import java.net.InetAddress;
 public class conex extends Thread{
 public String zaraza;
 public static String sendit;
-//int a;
+
 @SuppressWarnings("resource")
 public void run(){
 	try
@@ -17,32 +17,27 @@ public void run(){
     System.out.println("Waiting for ....");  
     while(true)
        {
-    	Thread.sleep(500);
-    	//RECEIVE    DATA
+       Thread.sleep(500);
+       //RECEIVE    DATA
        DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
        serverSocket.receive(receivePacket);
        serverSocket.setReceiveBufferSize(1024);
        String sendit = new String( receivePacket.getData());
-       System.out.println(fecha.dateinf2()+ " RX :  "+sendit);               //imprimo recibido
-       System.out.println("IdEquipo:  "+Parseo.parsed(sendit));  
+       System.out.println(fecha.dateinf2()+ " RX :  "+sendit.trim());               
+       
        InetAddress IPAddress = receivePacket.getAddress();
        int port = receivePacket.getPort();
-       
        //SEND    ACK    DATA
        DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, IPAddress, port);
        String num = sendit.substring(8, 10);   //#packet
        String code = sendit.substring(3,7);    //#codigo
        Thread.sleep(500);
        zaraza = "$B,"+code+",ACK="+num+",$E";
-       //zaraza = "$B,"+code+",TI="+fecha.dateinf()+",$E";
        sendData = zaraza.getBytes();
 	   serverSocket.send(sendPacket);   
-       String s = new String(sendData);
-       
-       System.out.println(fecha.dateinf2()+ " TX :  "+s); 
        }
     } catch (IOException | InterruptedException e) {
-		// TODO Auto-generated catch block
+		
 		e.printStackTrace();
 	}
 	finally{

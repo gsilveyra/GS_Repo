@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -11,7 +12,7 @@ public static String sendit;
 public void run(){
 	try
     {
-    DatagramSocket serverSocket = new DatagramSocket(3035);
+    DatagramSocket serverSocket = new DatagramSocket(4098);
     byte[] receiveData = new byte[150];
     byte[] sendData = new byte[30];
     System.out.println("Waiting for ....");  
@@ -23,7 +24,8 @@ public void run(){
        serverSocket.receive(receivePacket);
        serverSocket.setReceiveBufferSize(1024);
        String sendit = new String( receivePacket.getData());
-       System.out.println(fecha.dateinf2()+ " RX :  "+sendit.trim());               
+       System.out.println(fecha.dateinf2()+ " RX :  "+sendit.trim());   
+      
        
        InetAddress IPAddress = receivePacket.getAddress();
        int port = receivePacket.getPort();

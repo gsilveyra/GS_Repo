@@ -1,3 +1,5 @@
+import Ventana.jFrame;
+
 
 
 class Nano{

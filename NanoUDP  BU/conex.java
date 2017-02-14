@@ -25,7 +25,6 @@ public void run(){
        serverSocket.setReceiveBufferSize(1024);
        String sendit = new String( receivePacket.getData());
        System.out.println(fecha.dateinf2()+ " RX :  "+sendit.trim());   
-      
        
        InetAddress IPAddress = receivePacket.getAddress();
        int port = receivePacket.getPort();

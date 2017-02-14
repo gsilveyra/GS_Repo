@@ -1,3 +1,4 @@
+package Ventana;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -6,7 +7,7 @@ import javax.swing.JTextArea;
 public class jFrame extends JFrame {
 private static final long serialVersionUID = 1L;
 private JPanel contentPane;
-public JTextArea textArea;
+public static JTextArea textArea;
 public static void ventana() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -31,4 +32,6 @@ public jFrame() {
 		textArea.setBounds(49, 62, 327, 153);
 		contentPane.add(textArea);
 	}
+
+	
 }

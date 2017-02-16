@@ -1,3 +1,7 @@
+
+/*
+UDP SERVER CON ACK NANO
+*/
 package Principal;
 
 import java.io.IOException;
@@ -9,6 +13,8 @@ import Ventana.jFrame;
 
 public class conex extends Thread{
 public String zaraza;
+private int puerto = Integer.parseInt(jFrame.txtPort.getText());
+
 public static String sendit;
 /**
  * @wbp.parser.entryPoint
@@ -17,7 +23,7 @@ public static String sendit;
 public void run(){
 	try
     {
-    DatagramSocket serverSocket = new DatagramSocket(4098);
+    DatagramSocket serverSocket = new DatagramSocket(puerto);
     byte[] receiveData = new byte[150];
     byte[] sendData = new byte[30];
     System.out.println("Waiting for ....");  
